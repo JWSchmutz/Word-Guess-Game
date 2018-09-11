@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HANGCRAFT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    
+    
+</head>
+<body>
+    <h1 class="starcraft">HANGCRAFT</h1>
+    <h2 class="starcraft">Guess the unit</h2>
+    <div class="container justify-content-center">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <h4 class="starcraft">Lives Remaining</h4>
+                <div class="row">
+                    <img src="assets/images/zerg.png" class="col-md-3 " id="wrong0">
+                    <img src="assets/images/protoss.png"  class="col-md-3 toss" id="wrong1">
+                    <img src="assets/images/terran.png" class="col-md-3" id="wrong2">
+                    <img src="assets/images/zerg.png" class="col-md-3" id="wrong3">
+
+                </div>
+                <div class="row">
+                    <img src="assets/images/protoss.png" class="col-md-3 toss"id="wrong4">
+                    <img src="assets/images/terran.png" class="col-md-3"id="wrong5">
+                    <img src="assets/images/zerg.png" class="col-md-3"id="wrong6">
+                    <img src="assets/images/protoss.png" class="col-md-3 toss"id="wrong7">
+                    
+                </div>
+                <div class="row">
+                    <img src="assets/images/terran.png" class="col-md-3"id="wrong8">
+                    <img src="assets/images/zerg.png" class="col-md-3"id="wrong9">
+                    <img src="assets/images/protoss.png" class="col-md-3 toss"id="wrong10">
+                    <img src="assets/images/terran.png" class="col-md-3"id="wrong11">
+                </div>
+                
+                
+            </div>
+            <div class="col-md-6">
+                <h4>Press enter to start a new game.</h4>
+                <h4>Wins: <h4 id="winCount">0</h4></h4>
+                <h4> Current Word:</h4>
+                <h4 class="changers d-flex justify-content-center" id="word"></h4>
+                <br>
+                <h4>Incorrect letters guessed:</h4>
+                <h4 class="changers" id="guessed"></h4>
+
+            </div>
+        </div>
+    </div>
+    <img src="assets/images/victory.jpg" alt="Victory!" id="victory" class="invisible">
+    <img src="assets/images/defeat.jpg" alt="Defeat!" id="defeat" class="invisible">
+
+    <script
+    src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script> 
+    <script src="assets/javascript/game.js"></script>
+    
+</body>
+</html>

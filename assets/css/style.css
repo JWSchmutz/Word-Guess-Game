@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "starcraft";
+    src: url(starcraft.ttf) format("truetype");
+}
+.starcraft { 
+    font-family: "starcraft", Verdana, Tahoma;
+}
+
+p, h1,h2,h3,h4,h5,h6 {
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 100px;
+    color: rgb(193, 227, 255);
+}
+h2 {
+    font-size: 80px;
+    color: lightgray;
+}
+h3 {
+    float: left;
+    font-size: 60px;
+}
+h4 {
+    font-size: 40px;
+}
+h5 {
+    font-size: 30px;
+}
+h6 {
+    font-size: 20px;
+}
+p {
+    font-size: 16px;
+}
+
+body{
+    background-image: url("../images/galaxy.jpg");
+
+    background-size: cover;
+}
+
+img {
+    height: 100px;
+    max-width: 80px;
+    min-width: 80px;
+}
+
+.toss{
+    padding-right:8%;
+    padding-left:-8%
+}
+
+#defeat, #victory{
+    position: fixed;
+    top: 30px;
+    left: 10px;
+    height:70%;
+    min-width: 50%;
+}
