@@ -5,6 +5,7 @@ var correctString = ""
 var wrongString = ""
 var wins = 0;
 var winCondition = unit.length
+var guessedLetters = ""
 
 for (var i = 0; i < unit.length; i++) {
     if (letters.includes(unit[i].toLowerCase())) {
@@ -15,6 +16,7 @@ for (var i = 0; i < unit.length; i++) {
 
 document.onkeyup = function (pressed) {
     var userPressed = pressed.key.toLowerCase();
+    if ((guessedLetters.includes(userPressed))===false){
     if (userPressed === "enter") {
         // pick a new word from the units array
         unit = units[Math.floor(Math.random() * units.length)];
@@ -33,14 +35,15 @@ document.onkeyup = function (pressed) {
         $("img").animate({ opacity: 1 });
         wrongString="";
         winCondition = unit.length;
+        guessedLetters = ""
         // if the word contains the character typed, replace the corresponding space with the letter
     } else if (unit.toLowerCase().includes(userPressed)) {
+        guessedLetters=guessedLetters+userPressed;
         $("#guessed").append(userPressed.toLowerCase());
         for (var i = 0; i < unit.length; i++) {
             if (userPressed === unit[i].toLowerCase()) {
                 $("#" + i).text(unit[i]);
                 winCondition--;
-                console.log(winCondition);
                 if (winCondition === 0) {
                     $("#victory").removeClass("invisible");
                     wins++;
@@ -52,6 +55,7 @@ document.onkeyup = function (pressed) {
         
     } // if what the user types is not in the word, and it is a letter, add it to the end of the guessed letters
     if ((unit.indexOf(userPressed) === -1) && (letters.includes(userPressed.toLowerCase())) && (unit.indexOf(userPressed.toUpperCase()) === -1)) {
+        guessedLetters=guessedLetters+userPressed;
         $("#guessed").append(userPressed.toLowerCase());
         wrongString = wrongString + userPressed;
         var wsl = wrongString.length;
@@ -64,4 +68,5 @@ document.onkeyup = function (pressed) {
             }
         }
     }
+}
 }
