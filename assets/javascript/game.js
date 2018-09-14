@@ -6,6 +6,9 @@ var wrongString = ""
 var wins = 0;
 var winCondition = unit.length
 var guessedLetters = ""
+if (unit.includes(" ")){
+    winCondition--;
+}
 
 for (var i = 0; i < unit.length; i++) {
     if (letters.includes(unit[i].toLowerCase())) {
@@ -35,6 +38,9 @@ document.onkeyup = function (pressed) {
         $("img").animate({ opacity: 1 });
         wrongString="";
         winCondition = unit.length;
+        if (unit.includes(" ")){
+            winCondition--;
+        }
         guessedLetters = ""
         // if the word contains the character typed, replace the corresponding space with the letter
     } else if (unit.toLowerCase().includes(userPressed)) {
