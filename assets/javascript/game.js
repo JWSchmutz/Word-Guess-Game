@@ -6,7 +6,7 @@ var wrongString = ""
 var wins = 0;
 var winCondition = unit.length
 var guessedLetters = ""
-if (unit.includes(" ")){
+if (unit.includes(" ")) {
     winCondition--;
 }
 
@@ -19,60 +19,60 @@ for (var i = 0; i < unit.length; i++) {
 
 document.onkeyup = function (pressed) {
     var userPressed = pressed.key.toLowerCase();
-    if ((guessedLetters.includes(userPressed))===false){
-    if (userPressed === "enter") {
-        // pick a new word from the units array
-        unit = units[Math.floor(Math.random() * units.length)];
-        // empty all of the things that fill up during the game
-        $(".changers").empty();
-        $("#defeat").addClass("invisible");
-        $("#victory").addClass("invisible");
-        // put a space for each character in the word in an h3 with the id i (it's position in the word)
-        for (var i = 0; i < unit.length; i++) {
-            if (letters.includes(unit[i].toLowerCase())) {
-                var blanks = $("<h3 id =" + i + ">_&nbsp</h3>");
-                $("#word").append(blanks);
-            } else { $("#word").append(String.fromCharCode(160) + String.fromCharCode(160)); }
-        };
+    if ((guessedLetters.includes(userPressed)) === false) {
+        if (userPressed === "enter") {
+            // pick a new word from the units array
+            unit = units[Math.floor(Math.random() * units.length)];
+            // empty all of the things that fill up during the game
+            $(".changers").empty();
+            $("#defeat").addClass("invisible");
+            $("#victory").addClass("invisible");
+            // put a space for each character in the word in an h3 with the id i (it's position in the word)
+            for (var i = 0; i < unit.length; i++) {
+                if (letters.includes(unit[i].toLowerCase())) {
+                    var blanks = $("<h3 id =" + i + ">_&nbsp</h3>");
+                    $("#word").append(blanks);
+                } else { $("#word").append(String.fromCharCode(160) + String.fromCharCode(160)); }
+            };
 
-        $("img").animate({ opacity: 1 });
-        wrongString="";
-        winCondition = unit.length;
-        if (unit.includes(" ")){
-            winCondition--;
-        }
-        guessedLetters = ""
-        // if the word contains the character typed, replace the corresponding space with the letter
-    } else if (unit.toLowerCase().includes(userPressed)) {
-        guessedLetters=guessedLetters+userPressed;
-        $("#guessed").append(userPressed.toLowerCase());
-        for (var i = 0; i < unit.length; i++) {
-            if (userPressed === unit[i].toLowerCase()) {
-                $("#" + i).text(unit[i]);
+            $("img").animate({ opacity: 1 });
+            wrongString = "";
+            winCondition = unit.length;
+            if (unit.includes(" ")) {
                 winCondition--;
-                if (winCondition === 0) {
-                    $("#victory").removeClass("invisible");
-                    wins++;
-                    document.getElementById("winCount").textContent = wins;
-                    
+            }
+            guessedLetters = ""
+            // if the word contains the character typed, replace the corresponding space with the letter
+        } else if (unit.toLowerCase().includes(userPressed) && winCondition > 0 && wrongString.length < 12) {
+            guessedLetters = guessedLetters + userPressed;
+            $("#guessed").append(userPressed.toLowerCase());
+            for (var i = 0; i < unit.length; i++) {
+                if (userPressed === unit[i].toLowerCase()) {
+                    $("#" + i).text(unit[i]);
+                    winCondition--;
+                    if (winCondition === 0) {
+                        $("#victory").removeClass("invisible");
+                        wins++;
+                        document.getElementById("winCount").textContent = wins;
+
+                    }
+                }
+            }
+
+        } // if what the user types is not in the word, and it is a letter, add it to the end of the guessed letters
+        if ((unit.indexOf(userPressed) === -1) && (letters.includes(userPressed.toLowerCase())) && (unit.indexOf(userPressed.toUpperCase()) === -1) && winCondition > 0 && wrongString.length < 12) {
+            guessedLetters = guessedLetters + userPressed;
+            $("#guessed").append(userPressed.toLowerCase());
+            wrongString = wrongString + userPressed;
+            wsl = wrongString.length;
+            for (var w = 0; w < wsl; w++) {
+                $("#wrong" + w).animate({ opacity: 0 });
+                var audio = new Audio('assets/images/sound.mp3');
+                audio.play();
+                if (w === 11) {
+                    $("#defeat").removeClass("invisible");
                 }
             }
         }
-        
-    } // if what the user types is not in the word, and it is a letter, add it to the end of the guessed letters
-    if ((unit.indexOf(userPressed) === -1) && (letters.includes(userPressed.toLowerCase())) && (unit.indexOf(userPressed.toUpperCase()) === -1)) {
-        guessedLetters=guessedLetters+userPressed;
-        $("#guessed").append(userPressed.toLowerCase());
-        wrongString = wrongString + userPressed;
-        var wsl = wrongString.length;
-        for (var w = 0; w < wsl; w++) {
-            $("#wrong" + w).animate({ opacity: 0 });
-            var audio = new Audio('assets/images/sound.mp3');
-            audio.play();
-            if (w === 11) {
-                $("#defeat").removeClass("invisible");
-            }
-        }
     }
-}
 }
